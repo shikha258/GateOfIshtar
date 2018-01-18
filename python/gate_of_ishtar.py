@@ -23,11 +23,9 @@ def calculate_champion_health(champion, date_string_intervals):
 
         interval = (date_next - date).total_seconds()
 
-        if (interval > 3600 or i == len(date_string_intervals) -1):
+        if (interval >= 3600 or i == len(date_string_intervals) -1):
             total_damage += next_damage
 
-    if total_damage > 60:
-        total_damage = 60
     return total_damage
 
 
@@ -36,31 +34,34 @@ def calculate_damage_taken(date, champion):
         return 0
     # "Janna" demon of Wind spawned
     if (date.hour == 6 and date.minute >= 0 and date.minute <= 29):
-        return 8
+        return 7
     # "Tiamat" goddess of Oceans spawned
     elif (date.hour == 6 and date.minute >= 30 and date.minute <= 59):
-        return 13
+        return 18
     # "Mithra" goddess of sun spawned
     elif (date.hour == 7 and date.minute >= 0 and date.minute <= 59):
-        return 18
+        return 25
     # "Warwick" God of war spawned
     elif (date.hour == 8 and date.minute >= 0 and date.minute <= 29):
-        return 13
+        return 18
     # "Kalista" demon of agony spawned
     elif (date.hour >= 8 and date.hour <= 14 and date.minute >= 30 and date.minute <= 59):
-        return 8
+        return 7
     # "Ahri" goddess of wisdom spawned
     elif (date.hour == 15 and date.minute >= 0 and date.minute <= 29):
         return 13
     # "Brand" god of fire spawned
     elif (date.hour == 15 and date.minute >= 0 or date.hour == 16 and date.minute <= 59):
-        return 18
+        return 25
     # "Rumble" god of lightning spawned
     elif (date.hour == 17 and date.minute >= 0 and date.minute <= 59):
-        return 13
+        return 18
     # "Skarner" the scorpion demon spawned
-    elif (date.hour == 18 and date.minute >= 0 and date.minute <= 29):
-        return 8
+    elif (date.hour >= 18 and date.hour <= 19 and date.minute >= 0 and date.minute <= 59):
+        return 7
+    # "Luna" The goddess of the moon spawned
+    elif (date.hour == 20 and date.minute <=59):
+        return 13
     else:
         return 0
 
